@@ -1,9 +1,11 @@
 
 .app {
-  background-color: #759580; /* Set your desired background color */
-  min-height: 100vh; /* Ensure the app takes at least the full height of the viewport */
+  background-color: #759580; 
+  color: #ff5a0b;
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
+  font-family: sans-serif;
 }
 
 * {
@@ -19,12 +21,19 @@ body {
   text-align: center;
 }
 .Logo {
-  width: 75px; 
+  width: 50px; 
   height: auto;
+}
+.cart{
+  background-color: #33473a;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 .nav {
   background-color: #3a584d;
-  color: #ff5a0b;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -52,7 +61,11 @@ body {
   align-items: center;
   padding: .25rem;
 }
-
+.nav li{
+  transition: all 0.2s ease-in-out;
+}
 .nav li:hover {
-  background-color: #587060;
+  /*background-color: #587060;*/
+  color: #ff8b32;
+  transform:scale(1.2);
 }

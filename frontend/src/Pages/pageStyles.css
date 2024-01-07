@@ -1,0 +1,38 @@
+.centered-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 800px;
+    padding: 1em;
+    background-color: #324b41;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  header {
+    text-align: center;
+    padding: 1em;
+  }
+  .store-button {
+    background-color: #33473a;
+  color: #ff5a0b;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+  .store-button:hover {
+    background-color: #395041;
+    color: #ff8b32;
+  }
+  .background {
+    background-image: url("../Materials/Background.jpg");
+    background-size: cover;
+  }
