@@ -25,13 +25,16 @@ body {
   height: auto;
 }
 .cart{
-  background-color: #33473a;
+  background-color: #ff5a0b;
+  color: #3a584d;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
   gap: 2rem;
   padding: 0 1rem;
+  
 }
+ 
 .nav {
   background-color: #3a584d;
   display: flex;
