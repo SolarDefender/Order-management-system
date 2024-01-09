@@ -1,20 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import data from "../Materials/data.json"
-import { useCart, useSetCart } from '../Contexts/StoreContext';
+import React from 'react';
+import { useCart, useProducts, useSetCart } from '../Contexts/StoreContext';
 import "./pageStyles.css"
 function StorePage() {
-    const [items, setItems] = useState([]);
+    const items = useProducts();
 
-    const cart = useCart();
+    //const cart = useCart();
     const setCart=useSetCart();
-    useEffect(() => {
-        setItems(data);
-    }, []);
+   
 
     const addToCart = (productId) => {
         const selectedProduct = items.find(item => item.id === productId);
         setCart((prevCart) => {
-            // Check if the selected product is already in the cart
             if (prevCart[selectedProduct.id]) {
                 return { ...prevCart, [selectedProduct.id]: prevCart[selectedProduct.id] + 1 };
             } else {

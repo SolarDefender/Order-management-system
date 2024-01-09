@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import "./styles.css"
-import logo from "./Materials/Logo2.png";
+import logo from "../../Materials/Logo2.png";
+import { CartCounter } from '../CartCounter/CartCounter';
+import "../../styles.css";
 function NavBar() {
   return (
     <nav className="nav">
@@ -15,9 +16,12 @@ function NavBar() {
         {NavBarComponent('/', "Home")}
         {NavBarComponent('/store', "Store")}
         <div className='cart'>
-          {NavBarComponent('/cart', "Cart")}
+          <li>
+            <Link to={"/cart"}>{"Cart"}</Link >
+              <CartCounter />
+           </li>
         </div>
-        {NavBarComponent('/login',"Sign In")}
+        {NavBarComponent('/login', "Sign In")}
       </ul>
     </nav>
   );

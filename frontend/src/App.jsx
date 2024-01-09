@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import StorePage from './Pages/StorePage';
-import NavBar from './NavBar';
+import NavBar from './Components/NavBar/NavBar';
 import CartPage from './Pages/CartPage';
 import SignInPage from './Pages/Authentication/SingInPage';
 import SignUpPage from './Pages/Authentication/SignUpPage';
