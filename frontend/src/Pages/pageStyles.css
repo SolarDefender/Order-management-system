@@ -1,54 +1,66 @@
 .centered-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  .container {
-    max-width: 800px;
-    padding: 1em;
-    background-color: #324b41;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .product-container{
-    
-    max-width: 200px;
-    padding: 1em;
-    background-color: #324b41;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 20px; /* Adjust the value as needed */
-  }
-  .grid-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Set to four columns */
-    gap: 20px; /* Adjust the value as needed */
-  }
- .price{
-    color:#51b574;
-  }
-  header {
-    text-align: center;
-    padding: 1em;
-  }
-  .store-button {
-    background-color: #33473a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 800px;
+  padding: 1em;
+  background-color: #324b41;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-container {
+  max-width: 200px;
+  padding: 1em;
+  background-color: #324b41;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px; /* Adjust the value as needed */
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Adjust the value as needed */
+}
+
+.price {
+  color: #51b574;
+}
+
+header {
+  text-align: center;
+  padding: 1em;
+}
+
+.store-button {
+  background-color: #3a584d;
   color: #ff5a0b;
-    padding: 0.5em 1em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 1em;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.store-button:hover {
+  background-color: #395041;
+  color: #ff8b32;
+}
+
+.background {
+  background-image: url("../Materials/Background.jpg");
+  background-size: cover;
+}
+
+/* Media Query for smaller screens */
+@media screen and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust values for smaller screens */
   }
-  .store-button:hover {
-    background-color: #395041;
-    color: #ff8b32;
-  }
-  .background {
-    background-image: url("../Materials/Background.jpg");
-    background-size: cover;
-  }
+}

@@ -1,6 +1,8 @@
 
 .app {
   background-color: #759580; 
+  background-image: url("./Materials/Background.jpg");
+    background-size: cover;
   color: #ff5a0b;
   min-height: 100vh; 
   display: flex;

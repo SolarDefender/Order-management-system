@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "./styles.css"
 import logo from "./Materials/Logo2.png";
 function NavBar() {
@@ -25,7 +26,7 @@ function NavBar() {
 function NavBarComponent(ref, name) {
   return (
     <li>
-      <a href={ref}>{name}</a>
+      <Link to={ref}>{name}</Link>
     </li>
   );
 }

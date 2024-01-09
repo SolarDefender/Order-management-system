@@ -7,23 +7,25 @@ import CartPage from './Pages/CartPage';
 import SignInPage from './Pages/Authentication/SingInPage';
 import SignUpPage from './Pages/Authentication/SignUpPage';
 import "./styles.css";
+import StoreContextProvider from './Contexts/StoreContext';
 
-function NotFound (){<h2>404 - Not Found</h2>;}
+function NotFound() { <h2>404 - Not Found</h2>; }
 
-function App () {
+function App() {
   return (
     <div className="app">
-    <NavBar />
-    <Router>
-      <Routes>
-
-        <Route path="/" element={<HomePage />} />
-        <Route path="/store" element={<StorePage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/login" element={<SignInPage />} />
-        <Route path="/registr" element={<SignUpPage />} />
-      </Routes>
-    </Router>
+      <StoreContextProvider>
+        <Router>
+        <NavBar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/store" element={<StorePage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/login" element={<SignInPage />} />
+            <Route path="/registr" element={<SignUpPage />} />
+          </Routes>
+        </Router>
+      </StoreContextProvider>
     </div>
   );
 };
