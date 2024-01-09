@@ -12,7 +12,7 @@ export const CartCounter = () => {
     <div className="cart-container">
       {counter > 0 && (
         <div className={`cart-counter ${counter > 9 ? "more-than-nine" : ""}`}>
-          {counter > 9 ? `${counter}+` : counter}
+          {counter > 9 ? `9+` : counter}
         </div>
       )}
     </div>
