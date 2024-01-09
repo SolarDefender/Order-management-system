@@ -5,14 +5,14 @@ import './styles.css';
 
 export const CartCounter = () => {
   const cart = useCart();
-  const values = Object.values(cart);
-  const counter = values.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+
+  const totalQuantity = Object.values(cart).reduce((sum, product) => sum + product.quantity, 0);
 
   return (
     <div className="cart-container">
-      {counter > 0 && (
-        <div className={`cart-counter ${counter > 9 ? "more-than-nine" : ""}`}>
-          {counter > 9 ? `9+` : counter}
+      {totalQuantity > 0 && (
+        <div className={`cart-counter ${totalQuantity > 9 ? "more-than-nine" : ""}`}>
+          {totalQuantity > 9 ? `9+` : totalQuantity}
         </div>
       )}
     </div>

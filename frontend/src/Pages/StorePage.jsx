@@ -5,19 +5,32 @@ import "./pageStyles.css"
 function StorePage() {
     const [items, setItems] = useState([]);
 
-    const cart = useCart();
     const setCart=useSetCart();
     useEffect(() => {
         setItems(data);
     }, []);
-    const cartHandler = (productId) => {
-        const selectedProduct = items.find(item => item.id === productId);
+    const cartHandler = (product) => {
+        const selectedProduct = items.find(item => item.id === product.id);
+        console.log(selectedProduct);
         setCart((prevCart) => {
             // Check if the selected product is already in the cart
             if (prevCart[selectedProduct.id]) {
-                return { ...prevCart, [selectedProduct.id]: prevCart[selectedProduct.id] + 1 };
+                return { ...prevCart, [selectedProduct.id]:
+                      {
+                          id: selectedProduct.id,
+                          name: selectedProduct.Name,
+                          price: selectedProduct.Price,
+                          description: selectedProduct.Description,
+                          quantity: prevCart[selectedProduct.id].quantity + 1,
+                      }};
             } else {
-                return { ...prevCart, [selectedProduct.id]: 1 };
+                return { ...prevCart, [selectedProduct.id]: {
+                    id: selectedProduct.id,
+                    name: selectedProduct.Name,
+                    price: selectedProduct.Price,
+                    description: selectedProduct.Description,
+                    quantity: selectedProduct.Quantity + 1,
+                  } };
             }
         });
     };
@@ -30,7 +43,7 @@ function StorePage() {
                         <p>{item.Name}</p>
                         <p>{item.Description}</p>
                         <div className='price'><p>${item.Price.toFixed(2)}</p></div>
-                        <button className='store-button' onClick={() => cartHandler(item.id)}>Buy</button>
+                        <button className='store-button' onClick={() => cartHandler(item)}>Buy</button>
                         <p>Amount: {item.Amount}</p>
                     </div>
                 </div>

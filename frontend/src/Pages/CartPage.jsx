@@ -1,18 +1,21 @@
 import { useCart } from "../Contexts/StoreContext";
 
-function CartPage(){
-  const cart=useCart();
-  console.log('Cart Contents:', JSON.stringify(cart, null, 2));
+function CartPage() {
+  const cart = useCart();
+  const products = Object.values(cart).map((item) => item);
+
   return (
-    <div>
-      <h2>Cart Details</h2>
-      <ul>
-        {Object.keys(cart).map((key) => (
-          <li key={key}>
-            <strong>{key}:</strong> {cart[key]}
-          </li>
-        ))}
-      </ul>
+    <div className='grid-container'>
+      <div>
+        <h1>Selected Products</h1>
+        <ul>
+          {products.map(product => (
+            <div className='product-container'>
+              <li key={product.id}>{product.name} - Quantity: {product.id}</li>
+            </div>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
