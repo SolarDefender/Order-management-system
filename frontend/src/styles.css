@@ -1,10 +1,10 @@
 
 .app {
-  background-color: #759580; 
+  background-color: #759580;
   background-image: url("./Materials/Background.jpg");
     background-size: cover;
   color: #ff5a0b;
-  min-height: 100vh; 
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
@@ -21,56 +21,4 @@ body {
 .container {
   margin: 1rem;
   text-align: center;
-}
-.Logo {
-  width: 50px; 
-  height: auto;
-}
-.cart{
-  background-color: #ff5a0b;
-  color: #3a584d;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 0 1rem;
-  
-}
- 
-.nav {
-  background-color: #3a584d;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 2rem;
-  padding: 0 1rem;
-}
-
-.site-title {
-  font-size: 2rem;
-}
-
-.nav ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-.nav a {
-  color: inherit;
-  text-decoration: none;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: .25rem;
-}
-.nav li{
-  transition: all 0.2s ease-in-out;
-}
-.nav li:hover {
-  /*background-color: #587060;*/
-  color: #ff8b32;
-  transform:scale(1.2);
 }
