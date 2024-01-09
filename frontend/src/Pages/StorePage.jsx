@@ -10,7 +10,6 @@ function StorePage() {
     useEffect(() => {
         setItems(data);
     }, []);
-
     const cartHandler = (productId) => {
         const selectedProduct = items.find(item => item.id === productId);
         setCart((prevCart) => {
