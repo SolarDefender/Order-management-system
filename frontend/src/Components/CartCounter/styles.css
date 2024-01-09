@@ -1,0 +1,29 @@
+.cart-container {
+    position: relative;
+}
+
+.cart-counter {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+}
+
+.more-than-nine {
+    font-size: 11px;
+}
+
+.cart-counter-double-digit {
+    width: 30px;
+    height: 30px;
+    line-height: 25px;
+}

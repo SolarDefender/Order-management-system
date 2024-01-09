@@ -1,9 +1,9 @@
 import {NavLink} from "react-router-dom";
 import "./styles.css";
 import React from "react";
+import {CartCounter} from "../CartCounter/CartCounter";
 
 export const NavBarRoutes = () => {
-
   return (
     <ul className="nav-bar-container">
       <li className="nav-bar-item">
@@ -20,6 +20,7 @@ export const NavBarRoutes = () => {
         <NavLink to="/cart" className={({ isActive }) =>
           isActive ? "active" : ""
         }>Cart</NavLink>
+        <CartCounter/>
       </li>
       <li className="nav-bar-item">
         <NavLink to="/login" className={({ isActive }) =>

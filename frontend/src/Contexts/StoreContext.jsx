@@ -10,7 +10,6 @@ export function useSetCart() {
 }
 function StoreContextProvider({ children }) {
     const [cart, setCart] = useState({});
-    console.log(cart);
     return (
         <CartContext.Provider value={cart}>
             <SetCartContext.Provider value={setCart}>

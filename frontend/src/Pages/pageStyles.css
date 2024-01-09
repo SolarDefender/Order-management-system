@@ -48,6 +48,10 @@ header {
   transition: all 0.2s ease-in-out;
 }
 
+.store-button:active {
+  transform: scale(0.90);
+}
+
 .store-button:hover {
   background-color: #395041;
   color: #ff8b32;
