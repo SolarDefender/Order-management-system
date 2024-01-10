@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import data from "../Materials/data.json"
-import { useCart, useSetCart } from '../Contexts/StoreContext';
+import { useSetCart } from '../Contexts/StoreContext';
 import "./pageStyles.css"
 function StorePage() {
     const [items, setItems] = useState([]);
@@ -13,7 +13,6 @@ function StorePage() {
         const selectedProduct = items.find(item => item.id === product.id);
         console.log(selectedProduct);
         setCart((prevCart) => {
-            // Check if the selected product is already in the cart
             if (prevCart[selectedProduct.id]) {
                 return { ...prevCart, [selectedProduct.id]:
                       {

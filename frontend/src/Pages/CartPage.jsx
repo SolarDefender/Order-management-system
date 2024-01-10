@@ -11,7 +11,7 @@ function CartPage() {
         <ul>
           {products.map(product => (
             <div className='product-container'>
-              <li key={product.id}>{product.name} - Quantity: {product.id}</li>
+              <li key={product.id}>{product.name} - Quantity: {product.quantity}</li>
             </div>
           ))}
         </ul>
