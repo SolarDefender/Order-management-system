@@ -1,143 +1,162 @@
 [
-    {
-      "id": 1,
-      "Name": "Product 1",
-      "Description": "Description for Product 1",
-      "Price": 19.99,
-      "Amount": 10
-    },
-    {
-      "id": 2,
-      "Name": "Product 2",
-      "Description": "Description for Product 2",
-      "Price": 29.99,
-      "Amount": 15
-    },
-    {
-      "id": 3,
-      "Name": "Product 3",
-      "Description": "Description for Product 3",
-      "Price": 39.99,
-      "Amount": 20
-    },
-    {
-      "id": 4,
-      "Name": "Product 4",
-      "Description": "Description for Product 4",
-      "Price": 49.99,
-      "Amount": 5
-    },
-    {
-      "id": 5,
-      "Name": "Product 5",
-      "Description": "Description for Product 5",
-      "Price": 59.99,
-      "Amount": 25
-    },
-    {
-      "id": 6,
-      "Name": "Product 6",
-      "Description": "Description for Product 6",
-      "Price": 69.99,
-      "Amount": 30
-    },
-    {
-      "id": 7,
-      "Name": "Product 7",
-      "Description": "Description for Product 7",
-      "Price": 79.99,
-      "Amount": 8
-    },
-    {
-      "id": 8,
-      "Name": "Product 8",
-      "Description": "Description for Product 8",
-      "Price": 89.99,
-      "Amount": 12
-    },
-    {
-      "id": 9,
-      "Name": "Product 9",
-      "Description": "Description for Product 9",
-      "Price": 99.99,
-      "Amount": 18
-    },
-    {
-      "id": 10,
-      "Name": "Product 10",
-      "Description": "Description for Product 10",
-      "Price": 109.99,
-      "Amount": 22
-    },
-    {
-      "id": 11,
-      "Name": "Product 11",
-      "Description": "Description for Product 11",
-      "Price": 119.99,
-      "Amount": 14
-    },
-    {
-      "id": 12,
-      "Name": "Product 12",
-      "Description": "Description for Product 12",
-      "Price": 129.99,
-      "Amount": 7
-    },
-    {
-      "id": 13,
-      "Name": "Product 13",
-      "Description": "Description for Product 13",
-      "Price": 139.99,
-      "Amount": 13
-    },
-    {
-      "id": 14,
-      "Name": "Product 14",
-      "Description": "Description for Product 14",
-      "Price": 149.99,
-      "Amount": 16
-    },
-    {
-      "id": 15,
-      "Name": "Product 15",
-      "Description": "Description for Product 15",
-      "Price": 159.99,
-      "Amount": 9
-    },
-    {
-      "id": 16,
-      "Name": "Product 16",
-      "Description": "Description for Product 16",
-      "Price": 169.99,
-      "Amount": 24
-    },
-    {
-      "id": 17,
-      "Name": "Product 17",
-      "Description": "Description for Product 17",
-      "Price": 179.99,
-      "Amount": 11
-    },
-    {
-      "id": 18,
-      "Name": "Product 18",
-      "Description": "Description for Product 18",
-      "Price": 189.99,
-      "Amount": 19
-    },
-    {
-      "id": 19,
-      "Name": "Product 19",
-      "Description": "Description for Product 19",
-      "Price": 199.99,
-      "Amount": 27
-    },
-    {
-      "id": 20,
-      "Name": "Product 20",
-      "Description": "Description for Product 20",
-      "Price": 209.99,
-      "Amount": 6
-    }
-  ]
-  
+  {
+    "id": 1,
+    "Name": "Product 1",
+    "Description": "Description for Product 1",
+    "Price": 19.99,
+    "Amount": 10,
+    "Quantity": 0
+  },
+  {
+    "id": 2,
+    "Name": "Product 2",
+    "Description": "Description for Product 2",
+    "Price": 29.99,
+    "Amount": 15,
+    "Quantity": 0
+  },
+  {
+    "id": 3,
+    "Name": "Product 3",
+    "Description": "Description for Product 3",
+    "Price": 39.99,
+    "Amount": 20,
+    "Quantity": 0
+  },
+  {
+    "id": 4,
+    "Name": "Product 4",
+    "Description": "Description for Product 4",
+    "Price": 49.99,
+    "Amount": 5,
+    "Quantity": 0
+  },
+  {
+    "id": 5,
+    "Name": "Product 5",
+    "Description": "Description for Product 5",
+    "Price": 59.99,
+    "Amount": 25,
+    "Quantity": 0
+  },
+  {
+    "id": 6,
+    "Name": "Product 6",
+    "Description": "Description for Product 6",
+    "Price": 69.99,
+    "Amount": 30,
+    "Quantity": 0
+  },
+  {
+    "id": 7,
+    "Name": "Product 7",
+    "Description": "Description for Product 7",
+    "Price": 79.99,
+    "Amount": 8,
+    "Quantity": 0
+  },
+  {
+    "id": 8,
+    "Name": "Product 8",
+    "Description": "Description for Product 8",
+    "Price": 89.99,
+    "Amount": 12,
+    "Quantity": 0
+  },
+  {
+    "id": 9,
+    "Name": "Product 9",
+    "Description": "Description for Product 9",
+    "Price": 99.99,
+    "Amount": 18,
+    "Quantity": 0
+  },
+  {
+    "id": 10,
+    "Name": "Product 10",
+    "Description": "Description for Product 10",
+    "Price": 109.99,
+    "Amount": 22,
+    "Quantity": 0
+  },
+  {
+    "id": 11,
+    "Name": "Product 11",
+    "Description": "Description for Product 11",
+    "Price": 119.99,
+    "Amount": 14,
+    "Quantity": 0
+  },
+  {
+    "id": 12,
+    "Name": "Product 12",
+    "Description": "Description for Product 12",
+    "Price": 129.99,
+    "Amount": 7,
+    "Quantity": 0
+  },
+  {
+    "id": 13,
+    "Name": "Product 13",
+    "Description": "Description for Product 13",
+    "Price": 139.99,
+    "Amount": 13,
+    "Quantity": 0
+  },
+  {
+    "id": 14,
+    "Name": "Product 14",
+    "Description": "Description for Product 14",
+    "Price": 149.99,
+    "Amount": 16,
+    "Quantity": 0
+  },
+  {
+    "id": 15,
+    "Name": "Product 15",
+    "Description": "Description for Product 15",
+    "Price": 159.99,
+    "Amount": 9,
+    "Quantity": 0
+  },
+  {
+    "id": 16,
+    "Name": "Product 16",
+    "Description": "Description for Product 16",
+    "Price": 169.99,
+    "Amount": 24,
+    "Quantity": 0
+  },
+  {
+    "id": 17,
+    "Name": "Product 17",
+    "Description": "Description for Product 17",
+    "Price": 179.99,
+    "Amount": 11,
+    "Quantity": 0
+  },
+  {
+    "id": 18,
+    "Name": "Product 18",
+    "Description": "Description for Product 18",
+    "Price": 189.99,
+    "Amount": 19,
+    "Quantity": 0
+  },
+  {
+    "id": 19,
+    "Name": "Product 19",
+    "Description": "Description for Product 19",
+    "Price": 199.99,
+    "Amount": 27,
+    "Quantity": 0
+  },
+  {
+    "id": 20,
+    "Name": "Product 20",
+    "Description": "Description for Product 20",
+    "Price": 209.99,
+    "Amount": 6,
+    "Quantity": 0
+  }
+]
