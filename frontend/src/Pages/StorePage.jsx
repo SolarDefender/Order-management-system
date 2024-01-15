@@ -9,6 +9,13 @@ function StorePage() {
     const items= useProducts();
     const setItems=useSetProducts();
 
+    const itemsPerPage = 10; 
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+
     function cartHandler(selectedProduct){
         if (selectedProduct.Amount > 0) {
             const updatedItems = items.map(item => {
@@ -60,7 +67,7 @@ function StorePage() {
 
     return (
         <div className='grid-container'>
-            {items.map(item => (
+            {currentItems.map(item => (
                 <div key={item.id}>
                     <div className='product-container'>
                         <p>{item.Name}</p>
@@ -71,6 +78,15 @@ function StorePage() {
                     </div>
                 </div>
             ))}
+            <div className="pagination">
+                <button className='quantity-button' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+                    Prev
+                </button>
+                <span className='quantity-label'>{currentPage}</span>
+                <button className='quantity-button' onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastItem >= items.length}>
+                    Next
+                </button>
+            </div>
         </div>
     );
 }

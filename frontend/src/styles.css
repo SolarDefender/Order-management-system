@@ -13,9 +13,22 @@
 * {
   box-sizing: border-box;
 }
-
+.footer {
+  text-align: center;
+  background-color: #3a584d;
+  grid-column: 1/-1;
+}
 body {
-  margin: 0;
+  background-color: #759580; 
+  background-image: url("./Materials/Background.jpg");
+    background-size: cover;
+  color: #ff5a0b;
+  min-height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+    margin: 0;
+
 }
 
 .container {

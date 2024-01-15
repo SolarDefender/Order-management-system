@@ -6,8 +6,10 @@ import NavBar from './Components/NavBar/NavBar';
 import CartPage from './Pages/CartPage';
 import SignInPage from './Pages/Authentication/SingInPage';
 import SignUpPage from './Pages/Authentication/SignUpPage';
-import "./styles.css";
 import StoreContextProvider from './Contexts/StoreContext';
+import Footer from './Components/Footer/Footer';
+import "./styles.css";
+
 
 function NotFound() { <h2>404 - Not Found</h2>; }
 
@@ -17,6 +19,7 @@ function App() {
       <StoreContextProvider>
         <Router>
         <NavBar />
+        <body>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/store" element={<StorePage />} />
@@ -24,6 +27,8 @@ function App() {
             <Route path="/login" element={<SignInPage />} />
             <Route path="/registr" element={<SignUpPage />} />
           </Routes>
+          </body>
+          <Footer />
         </Router>
       </StoreContextProvider>
     </div>
