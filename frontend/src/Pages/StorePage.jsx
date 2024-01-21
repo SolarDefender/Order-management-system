@@ -17,6 +17,7 @@ function StorePage() {
     const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
     function cartHandler(selectedProduct){
+        
         if (selectedProduct.Amount > 0) {
             const updatedItems = items.map(item => {
                 if (selectedProduct.id === item.id) {

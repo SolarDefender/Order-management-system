@@ -20,11 +20,24 @@ export function useSetProducts(){
  }
 
 function StoreContextProvider({ children }) {
-    const [cart, setCart] = useState([]);   
-    const [items, setItems] = useState([]);
-    useEffect(() => {
-        setItems(data);
-    }, []);
+    const [cart, setCart] = useState(() => {
+        const storedCart = localStorage.getItem('cart');
+        return storedCart ? JSON.parse(storedCart) : [];
+      });   
+      const [items, setItems] = useState(() => {
+        const storedItems = localStorage.getItem('items');
+        if (storedItems) {
+          return JSON.parse(storedItems);
+        } else {
+          localStorage.setItem('items', JSON.stringify(data));
+          return data;
+        }
+      });
+      useEffect(() => {
+        localStorage.setItem('items', JSON.stringify(items));
+        localStorage.setItem('cart', JSON.stringify(cart));
+      }, [items, cart]);
+    
     return (
         <CartContext.Provider value={cart}>
             <SetCartContext.Provider value={setCart}>
