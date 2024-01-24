@@ -43,7 +43,7 @@ namespace Backend.Controllers
             if (_storeContext.Products == null)
                 return NotFound();
             var product = await _storeContext.Products.FindAsync(id);
-            if(product==null)
+            if (product == null)
                 return NotFound();
             return Ok(new ProductGET
             {
@@ -60,8 +60,8 @@ namespace Backend.Controllers
         {
             _storeContext.Products.Add(new Product
             {
-                Name= product.Name,
-                Description= product.Description,
+                Name = product.Name,
+                Description = product.Description,
                 Price = product.Price,
                 Amount = product.Amount
             });
@@ -106,6 +106,14 @@ namespace Backend.Controllers
             }
 
             await _storeContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProduct(int id) 
+        {
+
 
             return Ok();
         }
