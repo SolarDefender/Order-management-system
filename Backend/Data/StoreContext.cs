@@ -85,7 +85,7 @@ public partial class StoreContext : DbContext
 
             entity.ToTable("Role");
 
-            entity.Property(e => e.Role1)
+            entity.Property(e => e.Title)
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("Role");
@@ -111,7 +111,7 @@ public partial class StoreContext : DbContext
                 .HasMaxLength(200)
                 .IsUnicode(false);
 
-            entity.HasOne(d => d.IdRoleNavigation).WithMany(p => p.Users)
+            entity.HasOne(d => d.Role).WithMany(p => p.Users)
                 .HasForeignKey(d => d.IdRole)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("User_Role");

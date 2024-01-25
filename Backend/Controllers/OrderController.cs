@@ -39,8 +39,10 @@ namespace Backend.Controllers
                 .ToListAsync();
             return Ok(orders);
         }
+
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<OrdersGET>> GetOrder(int id)
+        public async Task<ActionResult<OrdersGET>> GetOrderById(int id)
         {
             if (_storeContext.Orders == null)
                 return NotFound();
@@ -80,63 +82,33 @@ namespace Backend.Controllers
 
             return Ok(order);
         }
-        [HttpPost]
-        public async Task<ActionResult> AddOrder(OrderPOST order)
+        [Route("byUser/{userId}")]
+        [HttpGet]
+        public async Task<ActionResult<OrdersGET>> GetOrdersByUser(int userId)
         {
-            if (order == null) return BadRequest();
-            if (order.Products == null) return BadRequest();
-            using (var transaction = _storeContext.Database.BeginTransaction())
-            {
-                try
-                {
-                    var originalUser = await _storeContext.Users.FindAsync(order.IdUser);
-                    var newOrder = new Order
-                    {
-                        CreatedAt = DateOnly.FromDateTime(DateTime.Now),
-                        Status = order.Status,
-                        IdUser = order.IdUser,
-                        user = originalUser
-
-                    };
-                    _storeContext.Orders.Add(newOrder);
-                    await _storeContext.SaveChangesAsync();
-
-                    foreach (var product in order.Products)
-                    {
-                        var originalProduct = await _storeContext.Products.FindAsync(product.IdProduct);
-                        if (originalProduct == null)
-                            throw new Exception("Product not found");
-                        var newProduct = new ProductOrder
-                        {
-                            IdOrder = newOrder.IdOrder,
-                            IdProduct = product.IdProduct,
-                            Amount = product.Amount,
-                            Order = newOrder,
-                            Product = originalProduct
-                        };
-
-                        originalProduct.Amount -=product.Amount;
-
-                        if (originalProduct.Amount < 0)
-                            throw new Exception("Not enough product amount in stock. Product id: "+ originalProduct.IdProduct+" Amount in stock");
-
-                        _storeContext.ProductOrders.Add(newProduct);
-                    }
-                    await _storeContext.SaveChangesAsync();
-
-                    transaction.Commit();
-                    return Ok();
-                }
-                catch (Exception e)
-                {
-                    transaction.Rollback();
-                    return StatusCode(500, "Internal Server Error:  "+e.Message);
-                }
-            }
+            if (_storeContext.Orders == null)
+                return NotFound();
+            var orders = await _storeContext.Orders
+               .Select(o => new OrdersGET
+               {
+                   IdOrder = o.IdOrder,
+                   CreatedAt = o.CreatedAt,
+                   Status = o.Status,
+                   user = new OrderGETUser
+                   {
+                       IdUser = o.user.IdUser,
+                       FirstName = o.user.FirstName,
+                       LastName = o.user.LastName,
+                   }
+               })
+               .Where(o => o.user.IdUser == userId)
+                .ToListAsync();
+            return Ok(orders);
         }
 
-       /* [HttpPut("{id}")]
-        public async Task<ActionResult> AddOrder(int id, [FromBody] OrderPUT order)
+
+        [HttpPost]
+        public async Task<ActionResult> AddOrder(OrderPOST order)
         {
             if (order == null) return BadRequest();
             if (order.Products == null) return BadRequest();
@@ -188,6 +160,25 @@ namespace Backend.Controllers
                     return StatusCode(500, "Internal Server Error:  " + e.Message);
                 }
             }
-        }*/
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> OrderDelete(int id)
+        {
+            var order = await _storeContext.Orders.FindAsync(id);
+            if (order == null)
+                return NotFound();
+
+            var productOrdersToDelete = _storeContext.ProductOrders
+                   .Where(po => po.IdOrder == id)
+                   .ToList();
+            if (productOrdersToDelete.Count != 0)
+                _storeContext.ProductOrders.RemoveRange(productOrdersToDelete);
+
+            _storeContext.Orders.Remove(order);
+            await _storeContext.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }

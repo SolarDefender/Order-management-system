@@ -73,37 +73,25 @@ namespace Backend.Controllers
         public async Task<ActionResult<ProductGET>> UpdateProduct(int id, [FromBody] ProductPUT newProduct)
         {
             if (newProduct == null)
-            {
                 return BadRequest("Invalid payload");
-            }
 
             var existingProduct = await _storeContext.Products.FindAsync(id);
 
             if (existingProduct == null)
-            {
                 return NotFound();
-            }
 
-            // Update only the properties that are provided in the DTO
+
             if (newProduct.Name != null)
-            {
                 existingProduct.Name = newProduct.Name;
-            }
 
             if (newProduct.Description != null)
-            {
                 existingProduct.Description = newProduct.Description;
-            }
 
             if (newProduct.Price.HasValue)
-            {
                 existingProduct.Price = newProduct.Price.Value;
-            }
 
             if (newProduct.Amount.HasValue)
-            {
                 existingProduct.Amount = newProduct.Amount.Value;
-            }
 
             await _storeContext.SaveChangesAsync();
 
@@ -111,9 +99,20 @@ namespace Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteProduct(int id) 
+        public async Task<ActionResult> DeleteProduct(int id)
         {
+            var product = await _storeContext.Products.FindAsync(id);
+            if (product == null) 
+                return NotFound();
+            
+            var productOrdersToDelete = _storeContext.ProductOrders
+                   .Where(po => po.IdProduct == id)
+                   .ToList();
+            if (productOrdersToDelete.Count != 0)
+            _storeContext.ProductOrders.RemoveRange(productOrdersToDelete);
 
+            _storeContext.Products.Remove(product);
+            await _storeContext.SaveChangesAsync();
 
             return Ok();
         }
