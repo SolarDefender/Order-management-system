@@ -8,31 +8,31 @@ function CartPage() {
   const setItems = useSetProducts();
 
   const totalPrice = Object.values(cart).reduce(
-    (summ, product) => summ + product.Price * product.Quantity,
+    (summ, product) => summ + product.price * product.quantity,
     0
   );
 
-  function addQuantity(selectedProduct) {
-    if (selectedProduct.Amount > 0) {
-      selectedProduct.Amount -= 1;
-      selectedProduct.Quantity += 1;
+  function addquantity(selectedProduct) {
+    if (selectedProduct.amount > 0) {
+      selectedProduct.amount -= 1;
+      selectedProduct.quantity += 1;
       const updatedItems = items.map((item) => {
-        if (selectedProduct.id === item.id) {
+        if (selectedProduct.idProduct === item.idProduct) {
           return {
             ...item,
-            Amount: selectedProduct.Amount,
-            Quantity: selectedProduct.Quantity,
+            amount: selectedProduct.amount,
+            quantity: selectedProduct.quantity,
           };
         }
         return item;
       });
 
       const updatedCart = Object.values(cart).map((item) => {
-        if (selectedProduct.id === item.id) {
+        if (selectedProduct.idProduct === item.idProduct) {
           return {
             ...item,
-            Amount: selectedProduct.Amount,
-            Quantity: selectedProduct.Quantity,
+            amount: selectedProduct.amount,
+            quantity: selectedProduct.quantity,
           };
         }
         return item;
@@ -43,27 +43,27 @@ function CartPage() {
     }
   }
 
-  function reduceQuantity(selectedProduct) {
-    if (selectedProduct.Quantity > 0) {
-      selectedProduct.Amount += 1;
-      selectedProduct.Quantity -= 1;
+  function reducequantity(selectedProduct) {
+    if (selectedProduct.quantity > 0) {
+      selectedProduct.amount += 1;
+      selectedProduct.quantity -= 1;
       const updatedItems = items.map((item) => {
-        if (selectedProduct.id === item.id) {
+        if (selectedProduct.idProduct === item.idProduct) {
           return {
             ...item,
-            Amount: selectedProduct.Amount,
-            Quantity: selectedProduct.Quantity,
+            amount: selectedProduct.amount,
+            quantity: selectedProduct.quantity,
           };
         }
         return item;
       });
 
       const updatedCart = Object.values(cart).map((item) => {
-        if (selectedProduct.id === item.id) {
+        if (selectedProduct.idProduct === item.idProduct) {
           return {
             ...item,
-            Amount: selectedProduct.Amount,
-            Quantity: selectedProduct.Quantity,
+            amount: selectedProduct.amount,
+            quantity: selectedProduct.quantity,
           };
         }
         return item;
@@ -76,7 +76,7 @@ function CartPage() {
 
 
   function removeProduct(selectedProduct) {
-    const updatedCart = Object.values(cart).filter((item) => item.id !== selectedProduct.id);
+    const updatedCart = Object.values(cart).filter((item) => item.idProduct !== selectedProduct.idProduct);
     setCart(updatedCart);
   }
 
@@ -91,24 +91,24 @@ function CartPage() {
         
         <ul>
           {Object.values(cart).map((product) => (
-            <div className="product-container" key={product.id}>
+            <div className="product-container" key={product.idProduct}>
               <li>
-                {product.Name}
+                {product.name}
                 <br />
-                <button className="quantity-button" onClick={() => reduceQuantity(product)}>
+                <button className="quantity-button" onClick={() => reducequantity(product)}>
                   -
                 </button>
-                <span className="quantity-label">{product.Quantity}</span>
-                <button className="quantity-button" onClick={() => addQuantity(product)}>
+                <span className="quantity-label">{product.quantity}</span>
+                <button className="quantity-button" onClick={() => addquantity(product)}>
                   +
                 </button>
-                {product.Quantity <= 0 && (
+                {product.quantity <= 0 && (
                   <button className="quantity-button" onClick={() => removeProduct(product)}>
                     Remove
                   </button>
                 )}
                 <br />
-                <div className='price'><p>${((product.Price.toFixed(2)) * (product.Quantity)).toFixed(2)}</p></div>
+                <div className='price'><p>${((product.price.toFixed(2)) * (product.quantity)).toFixed(2)}</p></div>
               </li>
             </div>
           ))}

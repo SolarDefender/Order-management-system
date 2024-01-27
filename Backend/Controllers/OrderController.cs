@@ -112,6 +112,7 @@ namespace Backend.Controllers
         {
             if (order == null) return BadRequest();
             if (order.Products == null) return BadRequest();
+
             using (var transaction = _storeContext.Database.BeginTransaction())
             {
                 try

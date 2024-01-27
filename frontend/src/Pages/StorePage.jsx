@@ -9,22 +9,25 @@ function StorePage() {
     const items= useProducts();
     const setItems=useSetProducts();
 
+   
+
     const itemsPerPage = 10; 
     const [currentPage, setCurrentPage] = useState(1);
-
+    items.forEach(element => {
+       console.log(element)});
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
 
     function cartHandler(selectedProduct){
         
-        if (selectedProduct.Amount > 0) {
+        if (selectedProduct.amount > 0) {
             const updatedItems = items.map(item => {
-                if (selectedProduct.id === item.id) {
+                if (selectedProduct.idProduct === item.idProduct) {
                     //selectedProduct.Amount-=1;
                     return {
                         ...item,
-                        Amount: item.Amount - 1,
+                        amount: item.amount - 1,
                     };
                 }
                 return item;
@@ -34,28 +37,28 @@ function StorePage() {
 
             setCart((prevCart) => {
 
-                if (prevCart[selectedProduct.id]) {
+                if (prevCart[selectedProduct.idProduct]) {
                     return {
-                        ...prevCart, [selectedProduct.id]:
+                        ...prevCart, [selectedProduct.idProduct]:
                         {
-                            id: selectedProduct.id,
-                            Name: selectedProduct.Name,
-                            Price: selectedProduct.Price,
-                            Description: selectedProduct.Description,
-                            Amount: selectedProduct.Amount-1,
-                            Quantity: prevCart[selectedProduct.id].Quantity + 1,
+                            idProduct: selectedProduct.idProduct,
+                            name: selectedProduct.name,
+                            price: selectedProduct.price,
+                            description: selectedProduct.description,
+                            amount: selectedProduct.amount-1,
+                            quantity: prevCart[selectedProduct.idProduct].quantity + 1,
                         }
                     };
                 } else {
 
                     return  {
-                        ...prevCart, [selectedProduct.id]: {
-                            id: selectedProduct.id,
-                            Name: selectedProduct.Name,
-                            Price: selectedProduct.Price,
-                            Description: selectedProduct.Description,
-                            Amount: selectedProduct.Amount-1,
-                            Quantity: selectedProduct.Quantity + 1,
+                        ...prevCart, [selectedProduct.idProduct]: {
+                            idProduct: selectedProduct.idProduct,
+                            name: selectedProduct.name,
+                            price: selectedProduct.price,
+                            description: selectedProduct.description,
+                            amount: selectedProduct.amount-1,
+                            quantity: 1,
                         }
                     };
                 }
@@ -69,13 +72,13 @@ function StorePage() {
     return (
         <div className='grid-container'>
             {currentItems.map(item => (
-                <div key={item.id}>
+                <div key={item.idProduct}>
                     <div className='product-container'>
-                        <p>{item.Name}</p>
-                        <p>{item.Description}</p>
-                        <div className='price'><p>${item.Price.toFixed(2)}</p></div>
+                        <p>{item.name}</p>
+                        <p>{item.description}</p>
+                        <div className='price'><p>${item.price.toFixed(2)}</p></div>
                         <button className='store-button' onClick={() => cartHandler(item)}>Add to cart</button>
-                        <p>Amount: {item.Amount}</p>
+                        <p>Amount: {item.amount}</p>
                     </div>
                 </div>
             ))}
