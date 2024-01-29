@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaUser,FaLock  } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 function SignInPage(){
 
     const [userEmail, setUserEmail] = useState('');
@@ -16,13 +17,19 @@ function SignInPage(){
         password: userPassword
       }),
     })
-      .then(res => {if (res.ok) {
+      .then(async res => {if (res.ok) {
+        const result = await res.json();
         console.log('Login successful');
         window.location.href = '/';
-        localStorage.setItem('signedIn', true);
-        return res.json();
+        localStorage.setItem('user', result);
+        return result;
       } else if (res.status === 404) {
-        console.error('User not found');
+        // return res.text().then((errorMessage) => {
+        //   console.error('Login failed with status 404:', errorMessage);
+        //   window.location.href = `/notFound?error=${encodeURIComponent(
+        //     errorMessage
+        //   )}`;
+        // });
       } else {
         console.error('Login failed with status:', res.status);
       }})
@@ -59,6 +66,7 @@ function SignInPage(){
         <button type="button" className='store-button' onClick={handleLogin}>
           Login
         </button>
+        <Link to={"/register"}>{" Sign Up"}</Link >
       </form>
     </div>
   );

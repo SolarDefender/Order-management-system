@@ -6,6 +6,13 @@ function CartPage() {
   const setCart = useSetCart();
   const items = useProducts();
   const setItems = useSetProducts();
+  const storedUser = localStorage.getItem('user');
+  const isSignedIn = storedUser !== null && parseInt(storedUser, 10) > 0;
+
+
+   if(!isSignedIn){
+    window.location.href = '/login'
+   };
 
   const totalPrice = Object.values(cart).reduce(
     (summ, product) => summ + product.price * product.quantity,
@@ -80,7 +87,43 @@ function CartPage() {
     setCart(updatedCart);
   }
 
-  function handleBuy() {
+  async function handleBuy() {
+    console.log(JSON.stringify({
+          Status: "Done",
+          UserId: storedUser,
+          Products: Object.values(cart).map(product => ({
+            IdProduct: product.idProduct,
+            Amount: product.quantity
+          }))
+        }));
+    try {
+      const response = await fetch('http://localhost:5245/api/Order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          status: "Done",
+          idUser: storedUser,
+          products: Object.values(cart).map(product => ({
+            idProduct: product.idProduct,
+            amount: product.quantity
+          }))
+        }),
+      });
+
+      if (response.ok) {
+        // Purchase successful, you can perform any necessary actions
+        console.log('Purchase successful');
+        setCart([]); // Clear the cart after successful purchase
+      } else {
+        // Handle errors or show a message to the user
+        console.error('Purchase failed with status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error during purchase:', error);
+    }
+
     setCart([]);
   }
 

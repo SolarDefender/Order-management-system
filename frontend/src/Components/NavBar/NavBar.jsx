@@ -7,7 +7,8 @@ import { FaUser  } from 'react-icons/fa';
 import { IoLogIn } from "react-icons/io5";
 function NavBar() {
 
-  const isSignedIn = localStorage.getItem('signedIn') === 'true';
+  const storedUser = localStorage.getItem('user');
+  const isSignedIn = storedUser !== null && parseInt(storedUser, 10) > 0;
 
   return (
     <nav className="nav">
@@ -26,7 +27,7 @@ function NavBar() {
               <CartCounter />
            </li>
         </div>
-        {NavBarComponent('/login', <div className='icon'>{isSignedIn ? <FaUser />: <IoLogIn />}</div>)}
+        {isSignedIn ? NavBarComponent('/profile',<FaUser />) : NavBarComponent('/login',<div className='icon'><IoLogIn /></div>)}
       </ul>
     </nav>
   );

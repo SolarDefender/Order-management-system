@@ -13,7 +13,7 @@ namespace Backend.Controllers
     {
         private readonly StoreContext _storeContext;
 
-        public UserController(StoreContext storeContext) 
+        public UserController(StoreContext storeContext)
         {
             _storeContext = storeContext;
         }
@@ -21,16 +21,16 @@ namespace Backend.Controllers
         [HttpGet]
         public async Task<ActionResult> GetUsers()
         {
-            var users= await _storeContext.Users
-                .Select(u=> new UserGET
+            var users = await _storeContext.Users
+                .Select(u => new UserGET
                 {
-                    IdUser=u.IdUser,
+                    IdUser = u.IdUser,
                     FirstName = u.FirstName,
-                    LastName = u.LastName,  
+                    LastName = u.LastName,
                     Email = u.Email,
                     PhoneNum = u.PhoneNum,
                     Role = u.Role.Title
-                }).ToListAsync();   
+                }).ToListAsync();
 
 
             return Ok(users);
@@ -51,45 +51,45 @@ namespace Backend.Controllers
         [HttpPost]
         public async Task<ActionResult> AddUser(UserPOST user)
         {
-            var role = await _storeContext.Roles.Where(r => r.Title == user.Role).FirstOrDefaultAsync();
+            var role = await _storeContext.Roles.Where(r => r.Title == "User").FirstOrDefaultAsync();
 
             if (role == null)
-                return NotFound("No such role: "+user.Role);
+                return NotFound("No such role: " + role);
 
             var newUser = new User
             {
-                FirstName = user.FirstName, 
-                LastName = user.LastName,   
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Email = user.Email,
                 PhoneNum = user.PhoneNum,
                 Password = user.Password,
-                IdRole=role.IdRole,
-                Role=role
+                IdRole = role.IdRole,
+                Role = role
             };
             _storeContext.Users.Add(newUser);
             await _storeContext.SaveChangesAsync();
             return Ok();
         }
 
-       
+
         [HttpPut("{id}")]
-        public async Task<ActionResult> updateUser(int id,[FromBody] UserPUT newUser)
+        public async Task<ActionResult> updateUser(int id, [FromBody] UserPUT newUser)
         {
             if (newUser == null)
                 return BadRequest();
 
-            var originalUser= await _storeContext.Users.FindAsync(id);
+            var originalUser = await _storeContext.Users.FindAsync(id);
 
             if (originalUser == null)
                 return BadRequest("Wrong id of user");
 
-            if(newUser.FirstName !=null)
+            if (newUser.FirstName != null)
                 originalUser.FirstName = newUser.FirstName;
 
-            if (newUser.LastName !=null)
-                originalUser.LastName = newUser.LastName;   
+            if (newUser.LastName != null)
+                originalUser.LastName = newUser.LastName;
 
-            if (newUser.Email !=null)
+            if (newUser.Email != null)
                 originalUser.Email = newUser.Email;
 
             if (newUser.PhoneNum != null)
@@ -117,7 +117,7 @@ namespace Backend.Controllers
             if (user == null) return NotFound();
 
 
-            var ordersToDelete = await _storeContext.Orders.Where(o=>o.user==user).ToListAsync();
+            var ordersToDelete = await _storeContext.Orders.Where(o => o.user == user).ToListAsync();
             if (ordersToDelete != null)
             {
                 foreach (var order in ordersToDelete)

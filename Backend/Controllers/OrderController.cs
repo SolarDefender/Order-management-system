@@ -118,6 +118,7 @@ namespace Backend.Controllers
                 try
                 {
                     var originalUser = await _storeContext.Users.FindAsync(order.IdUser);
+
                     var newOrder = new Order
                     {
                         CreatedAt = DateOnly.FromDateTime(DateTime.Now),
