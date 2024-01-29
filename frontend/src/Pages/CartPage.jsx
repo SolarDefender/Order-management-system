@@ -86,10 +86,10 @@ function CartPage() {
 
   return (
     <div className='grid-container'>
-      <div className="products-list">
+      <div className="cart-list">
         <h1>Selected Products</h1>
         
-        <ul>
+        <ul className="product-list">
           {Object.values(cart).map((product) => (
             <div className="product-container" key={product.idProduct}>
               <li>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "./pageStyles.css"
 function HomePage() {
     return (
-        <div className='background'>
+        
             <div className="centered-container">
                 <div className="container">
                     <header>
@@ -28,7 +28,6 @@ function HomePage() {
                     </Link>
                 </div>
             </div>
-        </div>
     );
 }
 

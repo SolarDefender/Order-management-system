@@ -39,7 +39,7 @@
           const response = await fetch(`http://localhost:5245/api/Store?page=1&pageSize=30`);
           const result = await response.json();
 
-          console.log("result:", JSON.stringify(result));
+          //console.log("result:", JSON.stringify(result));
 
           setItems(result);
 

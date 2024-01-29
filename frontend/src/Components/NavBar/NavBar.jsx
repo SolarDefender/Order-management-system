@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 import logo from "../../Materials/Logo2.png";
 import { CartCounter } from '../CartCounter/CartCounter';
 import "../../styles.css";
+import { FaUser  } from 'react-icons/fa';
+import { IoLogIn } from "react-icons/io5";
 function NavBar() {
+
+  const isSignedIn = localStorage.getItem('signedIn') === 'true';
+
   return (
     <nav className="nav">
       <div className='site-title'>
@@ -21,7 +26,7 @@ function NavBar() {
               <CartCounter />
            </li>
         </div>
-        {NavBarComponent('/login', "Sign In")}
+        {NavBarComponent('/login', <div className='icon'>{isSignedIn ? <FaUser />: <IoLogIn />}</div>)}
       </ul>
     </nav>
   );

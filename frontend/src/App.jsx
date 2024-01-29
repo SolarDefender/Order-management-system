@@ -15,12 +15,11 @@ function NotFound() { <h2>404 - Not Found</h2>; }
 
 function App() {
   return (
-    <body className="app">
+    <body >
       <StoreContextProvider>
         <Router>
         <NavBar />
-        
-          <div >
+          <div className="app">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/store" element={<StorePage />} />

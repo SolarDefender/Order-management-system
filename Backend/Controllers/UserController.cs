@@ -35,6 +35,18 @@ namespace Backend.Controllers
 
             return Ok(users);
         }
+        [Route("login")]
+        [HttpPost]
+        public async Task<ActionResult<int>> checkUser(UserAuthPOST userInput)
+        {
+            var user = await _storeContext.Users
+                .Where(u => u.Email == userInput.Email && u.Password == userInput.Password).FirstOrDefaultAsync();
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(user.IdUser);
+        }
 
         [HttpPost]
         public async Task<ActionResult> AddUser(UserPOST user)
@@ -59,6 +71,7 @@ namespace Backend.Controllers
             return Ok();
         }
 
+       
         [HttpPut("{id}")]
         public async Task<ActionResult> updateUser(int id,[FromBody] UserPUT newUser)
         {
