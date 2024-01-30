@@ -37,15 +37,29 @@ namespace Backend.Controllers
         }
         [Route("login")]
         [HttpPost]
-        public async Task<ActionResult<int>> checkUser(UserAuthPOST userInput)
+        public async Task<ActionResult<UserGET>> checkUser(UserAuthPOST userInput)
         {
             var user = await _storeContext.Users
                 .Where(u => u.Email == userInput.Email && u.Password == userInput.Password).FirstOrDefaultAsync();
-
             if (user == null)
-                return NotFound();
+                return NotFound("Cannot find user");
 
-            return Ok(user.IdUser);
+            var role = await _storeContext.Roles.FindAsync(user.IdRole);
+
+            if (role == null)
+                return NotFound("Cannot find role");
+            
+
+            var newUser = new UserGET
+            {
+                IdUser = user.IdUser,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNum = user.PhoneNum,
+                Role = role.Title
+            };
+            return Ok(newUser);
         }
 
         [HttpPost]

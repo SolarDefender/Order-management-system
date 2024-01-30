@@ -6,8 +6,9 @@ function CartPage() {
   const setCart = useSetCart();
   const items = useProducts();
   const setItems = useSetProducts();
-  const storedUser = localStorage.getItem('user');
-  const isSignedIn = storedUser !== null && parseInt(storedUser, 10) > 0;
+
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const isSignedIn = storedUser !== null && parseInt(storedUser.idUser, 10) > 0;
 
 
    if(!isSignedIn){
@@ -104,7 +105,7 @@ function CartPage() {
         },
         body: JSON.stringify({
           status: "Done",
-          idUser: storedUser,
+          idUser: storedUser.idUser,
           products: Object.values(cart).map(product => ({
             idProduct: product.idProduct,
             amount: product.quantity
@@ -113,11 +114,9 @@ function CartPage() {
       });
 
       if (response.ok) {
-        // Purchase successful, you can perform any necessary actions
         console.log('Purchase successful');
-        setCart([]); // Clear the cart after successful purchase
+        setCart([]);
       } else {
-        // Handle errors or show a message to the user
         console.error('Purchase failed with status:', response.status);
       }
     } catch (error) {

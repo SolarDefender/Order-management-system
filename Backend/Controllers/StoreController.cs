@@ -35,6 +35,8 @@ namespace Backend.Controllers
                 .Skip(skip)
                 .Take(pageSize)
                 .ToListAsync();
+            if (products == null || products.Count == 0)
+                return NotFound();
             return Ok(products);
         }
         [HttpGet("{id}")]

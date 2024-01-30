@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import data from "../Materials/data.json"
 import { useProducts, useSetCart, useSetProducts } from '../Contexts/StoreContext';
 import "./pageStyles.css"
 function StorePage() {
@@ -18,6 +17,36 @@ function StorePage() {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+
+useEffect(() => {
+      const storedItems = localStorage.getItem('items');
+    
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`http://localhost:5245/api/Store?page=1&pageSize=${itemsPerPage}`);
+          const result = await response.json();
+          setItems(result);
+
+          localStorage.setItem('items', JSON.stringify(result));
+        } catch (error) {
+          console.log("Error fetching data:", error);
+        }
+      };
+    
+      if (storedItems) {
+        try {
+          const parsedItems = JSON.parse(storedItems);
+          if(parsedItems.length>0)
+             setItems(parsedItems);
+          else
+              fetchData();
+        } catch (error) {
+          console.error("Error parsing stored items:", error);
+        }
+      } else {
+        fetchData();
+      }
+    }, []);
 
     function cartHandler(selectedProduct){
         
@@ -69,6 +98,26 @@ function StorePage() {
 
     };
 
+    async function handleNextPage(){
+        
+        if(indexOfLastItem <= items.length)
+          {
+
+            try {
+                const response = await fetch(`http://localhost:5245/api/Store?page=${currentPage+1}&pageSize=${itemsPerPage}`);
+            
+                if(response.ok){
+                    setCurrentPage(currentPage + 1);
+                const result = await response.json();
+                    setItems((prevItems) => [...prevItems, ...result]);
+                }
+                
+              } catch (error) {
+                console.log("Error fetching data:", error);
+              }
+          }
+    }
+
     return (
         <div className='grid-container'>
             {currentItems.map(item => (
@@ -87,7 +136,7 @@ function StorePage() {
                     Prev
                 </button>
                 <span className='quantity-label'>{currentPage}</span>
-                <button className='quantity-button' onClick={() => setCurrentPage(currentPage + 1)} disabled={indexOfLastItem >= items.length}>
+                <button className='quantity-button' onClick={handleNextPage} >
                     Next
                 </button>
             </div>

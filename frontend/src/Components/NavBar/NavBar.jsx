@@ -7,8 +7,8 @@ import { FaUser  } from 'react-icons/fa';
 import { IoLogIn } from "react-icons/io5";
 function NavBar() {
 
-  const storedUser = localStorage.getItem('user');
-  const isSignedIn = storedUser !== null && parseInt(storedUser, 10) > 0;
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const isSignedIn = storedUser !== null && parseInt(storedUser.idUser, 10) > 0;
 
   return (
     <nav className="nav">

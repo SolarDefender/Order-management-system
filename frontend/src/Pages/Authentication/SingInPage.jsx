@@ -21,21 +21,14 @@ function SignInPage(){
         const result = await res.json();
         console.log('Login successful');
         window.location.href = '/';
-        localStorage.setItem('user', result);
+        localStorage.setItem('user', JSON.stringify(result));
+        
+        console.log('Login successful. Data:', result);
         return result;
-      } else if (res.status === 404) {
-        // return res.text().then((errorMessage) => {
-        //   console.error('Login failed with status 404:', errorMessage);
-        //   window.location.href = `/notFound?error=${encodeURIComponent(
-        //     errorMessage
-        //   )}`;
-        // });
-      } else {
+      }
+      else {
         console.error('Login failed with status:', res.status);
-      }})
-      .then(data => {
-        console.log('Login successful. Data:', data);
-      });
+      }});
     console.log('Logging in with:', { userEmail, userPassword });
   };
 

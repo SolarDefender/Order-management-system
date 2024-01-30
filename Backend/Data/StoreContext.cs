@@ -100,7 +100,10 @@ public partial class StoreContext : DbContext
             entity.Property(e => e.IdUser).HasColumnName("idUser");
             entity.Property(e => e.Email)
                 .HasMaxLength(50)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
+            entity.HasIndex(e => e.Email).IsUnique();
+
             entity.Property(e => e.FirstName)
                 .HasMaxLength(30)
                 .IsUnicode(false);

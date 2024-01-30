@@ -10,6 +10,7 @@ import StoreContextProvider from './Contexts/StoreContext';
 import Footer from './Components/Footer/Footer';
 import "./styles.css";
 import ProfilePage from './Pages/ProfilePage';
+import OrderDetailsPage from './Pages/OrderDetailsPage';
 
 
 function NotFound() { 
@@ -39,9 +40,9 @@ function App() {
             <Route path="/login" element={<SignInPage />} />
             <Route path="/register" element={<SignUpPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/order/:id" element={<OrderDetailsPage />} />
           </Routes>
           </div>
-          
           <Footer />
         </Router>
       </StoreContextProvider>
