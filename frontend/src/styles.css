@@ -1,17 +1,37 @@
 
-.app {
-  background-color: #759580; /* Set your desired background color */
-  min-height: 100vh; /* Ensure the app takes at least the full height of the viewport */
+body {
+  background-color: #759580; 
+  background-image: url("./Materials/Background.jpg");
+    background-size: cover;
+  color: #ff5a0b;
+  min-height: 100vh; 
   display: flex;
   flex-direction: column;
+  font-family: sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
+.footer {
+  text-align: center;
+  background-color: #3a584d;
+  margin-top: 0.5em;
+  grid-column: 1/-1;
+}
 
-body {
-  margin: 0;
+
+.app {
+  background-color: transparent; 
+  /* background-image: url("./Materials/Background.jpg");
+    background-size: cover; */
+  color: #ff5a0b;
+  display: flex;
+  min-height: 90vh;
+  flex-direction: column;
+  font-family: sans-serif;
+    margin: 0;
+
 }
 
 .container {
@@ -19,12 +39,22 @@ body {
   text-align: center;
 }
 .Logo {
-  width: 75px; 
+  width: 50px; 
   height: auto;
 }
+.cart{
+  background-color: #ff5a0b;
+  color: #3a584d;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+  
+}
+ 
 .nav {
   background-color: #3a584d;
-  color: #ff5a0b;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -52,7 +82,11 @@ body {
   align-items: center;
   padding: .25rem;
 }
-
+.nav li{
+  transition: all 0.2s ease-in-out;
+}
 .nav li:hover {
-  background-color: #587060;
+  /*background-color: #587060;*/
+  color: #ff8b32;
+  transform:scale(1.2);
 }
